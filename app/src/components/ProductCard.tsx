@@ -37,14 +37,12 @@ export function ProductCard({ product, onAddToCart, onViewProduct, viewMode = 'g
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
             
-            {/* Badge de oferta */}
             {discount && (
               <div className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold">
                 -{discount}%
               </div>
             )}
             
-            {/* Badge de destacado */}
             {product.featured && !discount && (
               <div className="absolute top-3 left-3 bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-bold">
                 DESTACADO
@@ -90,11 +88,11 @@ export function ProductCard({ product, onAddToCart, onViewProduct, viewMode = 'g
             <div className="sm:w-48 flex flex-col justify-between">
               <div className="text-right mb-4">
                 <span className="text-2xl font-bold text-gray-900">
-                  ${product.price.toLocaleString()}
+                  RD${product.price.toLocaleString()}
                 </span>
                 {product.originalPrice && (
                   <span className="block text-sm text-gray-400 line-through">
-                    ${product.originalPrice.toLocaleString()}
+                    RD${product.originalPrice.toLocaleString()}
                   </span>
                 )}
               </div>
@@ -152,21 +150,18 @@ export function ProductCard({ product, onAddToCart, onViewProduct, viewMode = 'g
           </button>
         </div>
         
-        {/* Badge de oferta */}
         {discount && (
           <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
             -{discount}%
           </div>
         )}
         
-        {/* Badge de destacado */}
         {product.featured && !discount && (
           <div className="absolute top-4 left-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
             DESTACADO
           </div>
         )}
         
-        {/* Badge de agotado */}
         {!product.inStock && (
           <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
             <span className="bg-gray-800 text-white px-4 py-2 rounded-full font-bold text-lg">
@@ -178,11 +173,11 @@ export function ProductCard({ product, onAddToCart, onViewProduct, viewMode = 'g
         {/* Precio flotante */}
         <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
           <span className="text-xl font-bold text-gray-900">
-            ${product.price.toLocaleString()}
+            RD${product.price.toLocaleString()}
           </span>
           {product.originalPrice && (
             <span className="block text-sm text-gray-400 line-through">
-              ${product.originalPrice.toLocaleString()}
+              RD${product.originalPrice.toLocaleString()}
             </span>
           )}
         </div>
