@@ -42,12 +42,6 @@ export function HeroSection({ title, subtitle, ctaText, whatsappNumber }: HeroSe
           />
         </div>
 
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600/20 backdrop-blur-sm border border-blue-500/30 text-blue-300 mb-8 animate-fade-in-up">
-          <Zap className="w-4 h-4" />
-          <span className="text-sm font-medium">Envío gratis en compras mayores a $500</span>
-        </div>
-
         {/* Title */}
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-fade-in-up">
           {title}
