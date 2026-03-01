@@ -32,21 +32,19 @@ function App() {
     removeFromCart,
     updateQuantity,
     clearCart,
+    openCart,
     closeCart
   } = useCart();
   const { toasts, addToast, removeToast } = useToast();
 
-  // Product Detail Modal State
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
 
-  // Handle add to cart with toast
   const handleAddToCart = (product: Product) => {
     addToCart(product);
     addToast(`${product.name} agregado al carrito`, 'success');
   };
 
-  // Handle product selection from search
   const handleSelectProduct = (product: Product) => {
     setSelectedProduct(product);
     setIsDetailModalOpen(true);
@@ -54,20 +52,16 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Toast Notifications */}
       <ToastContainer toasts={toasts} onRemove={removeToast} />
 
-      {/* Navigation */}
       <Navigation
         cartItemCount={totalItems}
-        onCartClick={() => {}}
+        onCartClick={openCart}
         phone={config.phone}
       />
 
-      {/* Setup Notice */}
       <SetupNotice show={usingSampleData} />
 
-      {/* Hero Section */}
       <HeroSection
         title={config.heroTitle}
         subtitle={config.heroSubtitle}
@@ -75,7 +69,6 @@ function App() {
         whatsappNumber={config.whatsapp}
       />
 
-      {/* Search Bar Section */}
       <section className="py-8 bg-gray-50 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
@@ -91,10 +84,8 @@ function App() {
         </div>
       </section>
 
-      {/* Categories Section */}
       <CategoriesSection categories={categories} />
 
-      {/* Products Section */}
       <ProductsSection
         products={products}
         onAddToCart={handleAddToCart}
@@ -102,19 +93,14 @@ function App() {
         loading={loading}
       />
 
-      {/* Benefits Section */}
       <BenefitsSection />
 
-      {/* Testimonials Section */}
       <TestimonialsSection />
 
-      {/* CTA Section */}
       <CTASection whatsappNumber={config.whatsapp} />
 
-      {/* Setup Instructions (only show when using sample data) */}
       {usingSampleData && <SetupSection />}
 
-      {/* Footer */}
       <FooterSection
         phone={config.phone}
         whatsapp={config.whatsapp}
@@ -124,13 +110,10 @@ function App() {
         country={config.country}
       />
 
-      {/* Floating WhatsApp Button */}
       <WhatsAppButton whatsappNumber={config.whatsapp} />
 
-      {/* Floating Cart Button */}
-      <CartButton itemCount={totalItems} onClick={() => {}} />
+      <CartButton itemCount={totalItems} onClick={openCart} />
 
-      {/* Cart Drawer */}
       <CartDrawer
         isOpen={cartIsOpen}
         onClose={closeCart}
@@ -142,7 +125,6 @@ function App() {
         whatsappNumber={config.whatsapp}
       />
 
-      {/* Product Detail Modal */}
       <ProductDetailModal
         product={selectedProduct}
         isOpen={isDetailModalOpen}
