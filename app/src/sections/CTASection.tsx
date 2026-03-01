@@ -13,7 +13,7 @@ export function CTASection({ whatsappNumber }: CTASectionProps) {
           ¿Listo para armar tu PC ideal?
         </h2>
         <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
-          Tenemos todo lo que necesitas. Envío gratis en compras mayores a $500 y asesoría personalizada.
+          Tenemos todo lo que necesitas.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
