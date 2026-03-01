@@ -14,17 +14,26 @@ interface ProductsSectionProps {
 export function ProductsSection({ products, onAddToCart, onViewProduct, loading }: ProductsSectionProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('todos');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [showAll, setShowAll] = useState(false);
 
   // Obtener categorías únicas
   const categories = ['todos', ...new Set(products.map(p => p.category))];
 
-  // Filtrar productos
+  // Filtrar productos por categoría
   const filteredProducts = selectedCategory === 'todos'
     ? products
     : products.filter(p => p.category === selectedCategory);
 
-  // Mostrar solo destacados inicialmente
+  // Mostrar solo destacados inicialmente (cuando está en 'todos' y no se ha pulsado Ver Todos)
   const featuredProducts = products.filter(p => p.featured);
+
+  const displayedProducts = selectedCategory !== 'todos'
+    ? filteredProducts
+    : showAll
+      ? products
+      : featuredProducts;
+
+  const hasMore = selectedCategory === 'todos' && !showAll && products.length > featuredProducts.length;
 
   if (loading) {
     return (
@@ -47,7 +56,7 @@ export function ProductsSection({ products, onAddToCart, onViewProduct, loading 
               Catálogo
             </span>
             <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mt-3 mb-4">
-              Productos Destacados
+              {showAll || selectedCategory !== 'todos' ? 'Todos los Productos' : 'Productos Destacados'}
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl">
               Los mejores equipos y componentes con garantía y soporte técnico
@@ -77,7 +86,10 @@ export function ProductsSection({ products, onAddToCart, onViewProduct, loading 
             <Button
               key={category}
               variant={selectedCategory === category ? 'default' : 'outline'}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => {
+                setSelectedCategory(category);
+                if (category !== 'todos') setShowAll(false);
+              }}
               className={`capitalize rounded-full px-6 ${
                 selectedCategory === category
                   ? 'bg-blue-600 hover:bg-blue-700'
@@ -95,7 +107,7 @@ export function ProductsSection({ products, onAddToCart, onViewProduct, loading 
             ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' 
             : 'grid-cols-1'
         }`}>
-          {(selectedCategory === 'todos' ? featuredProducts : filteredProducts).map((product) => (
+          {displayedProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
@@ -106,13 +118,13 @@ export function ProductsSection({ products, onAddToCart, onViewProduct, loading 
           ))}
         </div>
 
-        {/* View All Button */}
-        {selectedCategory === 'todos' && products.length > featuredProducts.length && (
+        {/* Ver Todos Button */}
+        {hasMore && (
           <div className="text-center mt-12">
             <Button
               variant="outline"
               size="lg"
-              onClick={() => setSelectedCategory('todos')}
+              onClick={() => setShowAll(true)}
               className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-6 text-lg font-semibold rounded-full transition-all"
             >
               Ver Todos los Productos
@@ -122,7 +134,7 @@ export function ProductsSection({ products, onAddToCart, onViewProduct, loading 
 
         {/* Results Count */}
         <div className="text-center mt-8 text-gray-500">
-          Mostrando {(selectedCategory === 'todos' ? featuredProducts : filteredProducts).length} de {products.length} productos
+          Mostrando {displayedProducts.length} de {products.length} productos
         </div>
       </div>
     </section>
