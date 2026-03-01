@@ -35,11 +35,10 @@ export function ProductDetailModal({
     : null;
 
   const handleWhatsAppInquiry = () => {
-    const message = `Hola! Me interesa el ${product.name} por $${product.price.toLocaleString()}. ¿Está disponible?`;
+    const message = `Hola! Me interesa el ${product.name} por RD$${product.price.toLocaleString()}. ¿Está disponible?`;
     window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
-  // Simulated gallery images (in real app, you'd have multiple images per product)
   const galleryImages = [product.image, product.image, product.image];
 
   return (
@@ -63,7 +62,6 @@ export function ProductDetailModal({
         <div className="grid md:grid-cols-2 h-full max-h-[90vh] overflow-auto">
           {/* Image Section */}
           <div className="bg-gray-100 p-6 md:p-8">
-            {/* Main Image */}
             <div className="aspect-square rounded-2xl overflow-hidden bg-white mb-4">
               <img
                 src={galleryImages[selectedImage]}
@@ -72,7 +70,6 @@ export function ProductDetailModal({
               />
             </div>
             
-            {/* Thumbnail Gallery */}
             <div className="flex gap-2 justify-center">
               {galleryImages.map((img, idx) => (
                 <button
@@ -90,7 +87,6 @@ export function ProductDetailModal({
 
           {/* Info Section */}
           <div className="p-6 md:p-8 flex flex-col">
-            {/* Header */}
             <div className="mb-4">
               <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-3">
                 {product.category}
@@ -99,7 +95,6 @@ export function ProductDetailModal({
                 {product.name}
               </h2>
               
-              {/* Rating */}
               <div className="flex items-center gap-2 mb-4">
                 <div className="flex text-yellow-400">
                   {[...Array(5)].map((_, i) => (
@@ -115,12 +110,12 @@ export function ProductDetailModal({
             {/* Price */}
             <div className="flex items-baseline gap-3 mb-6">
               <span className="text-4xl font-bold text-gray-900">
-                ${product.price.toLocaleString()}
+                RD${product.price.toLocaleString()}
               </span>
               {product.originalPrice && (
                 <>
                   <span className="text-xl text-gray-400 line-through">
-                    ${product.originalPrice.toLocaleString()}
+                    RD${product.originalPrice.toLocaleString()}
                   </span>
                   <span className="px-2 py-1 bg-red-100 text-red-600 rounded-lg text-sm font-bold">
                     -{discount}%
@@ -135,7 +130,6 @@ export function ProductDetailModal({
               <p className="text-gray-600">{product.specs}</p>
             </div>
 
-            {/* Description */}
             {product.description && (
               <div className="mb-6">
                 <h3 className="font-semibold text-gray-900 mb-2">Descripción</h3>
@@ -143,11 +137,10 @@ export function ProductDetailModal({
               </div>
             )}
 
-            {/* Features */}
             <div className="grid grid-cols-2 gap-3 mb-6">
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Truck className="w-4 h-4 text-blue-500" />
-                <span>Envío gratis +$500</span>
+                <span>Envío disponible</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Shield className="w-4 h-4 text-green-500" />
@@ -155,7 +148,6 @@ export function ProductDetailModal({
               </div>
             </div>
 
-            {/* Stock Status */}
             <div className="flex items-center gap-2 mb-6">
               {product.inStock ? (
                 <>
