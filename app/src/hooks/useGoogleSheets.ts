@@ -116,7 +116,7 @@ export function useGoogleSheets() {
   const [config, setConfig] = useState<SiteConfig>(DEFAULT_CONFIG);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [usingSampleData, setUsingSampleData] = useState(true);
+  const [usingSampleData, setUsingSampleData] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -151,7 +151,7 @@ export function useGoogleSheets() {
       setError(null);
     } catch (err) {
       console.log('Usando datos de ejemplo. Configura tu Google Sheet para datos personalizados.');
-      setUsingSampleData(true);
+      setUsingSampleData(false);
       setError(null);
     } finally {
       setLoading(false);
