@@ -13,7 +13,7 @@
 
 function doGet(e) {
   // ⬇️ REEMPLAZA ESTO CON EL ID DE TU GOOGLE SHEET
-  const SHEET_ID = 'TU_SHEET_ID_AQUI';
+  const SHEET_ID = '1G7ECqx1tgXQKOY3Pf26rRBa6PPgFos7NZrMavb0ZY2o';
   
   // Headers CORS
   const headers = {
