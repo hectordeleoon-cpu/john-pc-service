@@ -26,12 +26,11 @@ export function FooterSection({
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center font-bold text-2xl text-white">
-                J
-              </div>
-              <span className="text-2xl font-bold text-white">
-                John PC Service
-              </span>
+              <img
+                src="/logo.png"
+                alt="John PC Service"
+                className="h-12 w-auto object-contain"
+              />
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
               Tu tienda de confianza para computadoras, reparaciones y componentes gaming en República Dominicana.
