@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import type { Product, Category, SiteConfig } from '@/types';
 
 // CONFIGURACIÓN - Cambia esta URL por la de tu Google Apps Script
-const GOOGLE_SHEETS_API_URL = 'https://script.google.com/macros/s/AKfycbzkhTFcCz-8Fw42WQ3AIwdemtsBPcQLQHbxc8RkbK4o_QUGQTKoi7PdtVhwmhk22IUr/exec';
+const GOOGLE_SHEETS_API_URL = 'https://script.google.com/macros/s/AKfycbwvfUsWefou5T4vMZBMT_KrPQ_1hWJL1urGskgGIRSAR-fK7gcfsPDDVmN08lPrR_hU/exec';
 
 // Datos de ejemplo para mostrar mientras se configura el Google Sheet
 const SAMPLE_PRODUCTS: Product[] = [
